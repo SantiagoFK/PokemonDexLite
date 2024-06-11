@@ -1,0 +1,24 @@
+{
+    "pokemons": [
+        {
+            "id": 1,
+            "name": "Arcanine",
+            "type": "Fire"
+        },
+        {
+            "id": 2,
+            "name": "Buizel",
+            "type": "Water"
+        },
+        {
+            "id": 3,
+            "name": "Pikachu",
+            "type": "Electric"
+        },
+        {
+            "id": 4,
+            "name": "Snivy",
+            "type": "Grass"
+        }
+    ]
+}
