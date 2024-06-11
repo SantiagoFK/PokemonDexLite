@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { ListPokemonComponent } from './components/list-pokemon/list-pokemon.component';
-import { ListPokemonPageComponent } from './pages/list-pokemon-page/list-pokemon-page.component';
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { CreatePokemonComponent } from './components/create-pokemon/create-pokemon.component';
-import { ListOnePokemonComponent } from './components/list-one-pokemon/list-one-pokemon.component';
 import { EditPokemonComponent } from './components/edit-pokemon/edit-pokemon.component';
 import { SharedModule } from '../shared/shared.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { OnePokemonComponent } from './components/one-pokemon/one-pokemon.component';
+import { PokedexLiteComponent } from './components/pokedex-lite/pokedex-lite.component';
+import { PokedexLitePageComponent } from './pages/pokedex-lite-page/pokedex-lite-page.component';
 
 
 @NgModule({
   declarations: [
     ListPokemonComponent,
-    ListPokemonPageComponent,
     CreatePokemonComponent,
-    ListOnePokemonComponent,
-    EditPokemonComponent
+    EditPokemonComponent,
+    OnePokemonComponent,
+    PokedexLiteComponent,
+    PokedexLitePageComponent
   ],
   imports: [
     SharedModule, 
-    PokemonRoutingModule,
-    HttpClientModule
+    PokemonRoutingModule
   ]
 })
 export class PokemonModule { }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../../interfaces/pokemon.interface';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pokemon, PokemonList } from '../../interfaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
@@ -7,28 +7,12 @@ import { PokemonService } from '../../services/pokemon.service';
   templateUrl: './list-pokemon.component.html',
   styleUrl: './list-pokemon.component.css'
 })
-export class ListPokemonComponent implements OnInit
-{
-  pokemons: Pokemon[] = []
+export class ListPokemonComponent
+{ 
+  @Input('pokemons') pokemons!: Pokemon[]
 
-  constructor(private pokemonService: PokemonService) { }
-
-  ngOnInit(): void 
-  {
-    this.getPokemons()  
-  }
-
-  getPokemons()
-  {
-    this.pokemonService.getPokemons().subscribe(
-      {
-        next: (pokemons) => {
-          this.pokemons = pokemons
-        },
-        error: (error) => {
-          console.log(error)
-        }
-      }
-    )
+  itemTrackBy(index: number, item: Pokemon)
+  { 
+    return item.id
   }
 }

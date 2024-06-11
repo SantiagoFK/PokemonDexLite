@@ -1,1 +1,21 @@
-<p>create-pokemon works!</p>
+<form (submit)="create()" [formGroup]="pokemonForm">
+    <div>
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name" formControlName="name">
+
+        <span *ngIf="validateField('name', 'required')">
+            This field is required.
+        </span>
+    </div>
+
+    <div>
+        <label for="type">Type:</label><br>
+        <input type="text" name="type" id="type" formControlName="type">
+
+        <span *ngIf="validateField('type', 'required')">
+            This field is required.
+        </span>
+    </div>
+
+    <button type="submit" class="form-btn">Create</button>
+</form>

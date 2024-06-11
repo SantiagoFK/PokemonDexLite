@@ -1,19 +1,9 @@
 <p>Pokemon list</p>
 
 <div>
-    <div *ngIf="pokemons.length > 0; else noPokemons">
-        <h3>Pokemons</h3>
-        <div *ngFor="let pokemon of pokemons">
-            <div>
-                <p> {{ pokemon.id }}</p>
-                <p>{{ pokemon.name }} </p>
-                <p>{{ pokemon.type}} </p>
-            </div>
-        </div>
+    <h3>Pokemons</h3>
+    <div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy">
+        <app-one-pokemon [pokemon]="pokemon"></app-one-pokemon>
     </div>
-
 </div>
     
-<ng-template #noPokemons>
-    <p>No pokemons found</p>
-</ng-template>

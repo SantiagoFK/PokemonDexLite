@@ -4,3 +4,5 @@ export interface Pokemon
     name: string,
     type: string
 }
+
+export type PokemonList = Array<Pokemon>
