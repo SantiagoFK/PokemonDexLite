@@ -1,3 +1,4 @@
 export const environment = {
-    baseUrl: "https://pokeapi.co/api/v2/"
+    pokemonsBaseUrl: "http://localhost:3000/pokemons",
+    usersBaseUrl: "http://localhost:3001/users"
 }

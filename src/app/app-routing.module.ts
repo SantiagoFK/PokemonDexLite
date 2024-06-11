@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
-  { path: 'home', loadChildren: () => import('./pokemon/pokemon.module').then(m => m.PokemonModule)}
+  { path: 'home', loadChildren: () => import('./pokemon/pokemon.module').then(m => m.PokemonModule)},
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule)}
 ];
 
 @NgModule({

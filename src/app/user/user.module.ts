@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { UserRoutingModule } from './user-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoginComponent,
+    SignupComponent,
+    LoginPageComponent
+  ],
   imports: [
-    CommonModule
+    SharedModule, 
+    UserRoutingModule
   ]
 })
 export class UserModule { }
