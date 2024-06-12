@@ -4,7 +4,7 @@ export interface Pokemon
 {
     id?: string,
     name: string,
-    type: string[],
+    types: string[],
     lvl: number,
     evolutionIds?: string[],
     abilities?: PokemonAbility[]

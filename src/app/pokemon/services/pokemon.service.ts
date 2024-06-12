@@ -21,7 +21,7 @@ export class PokemonService
           return {
             id: pokemon.id,
             name: pokemon.name,
-            type: pokemon.type,
+            types: pokemon.types,
             lvl: pokemon.lvl,
             evolutionIds: pokemon.evolutionIds,
             abilities: pokemon.abilities
@@ -36,9 +36,35 @@ export class PokemonService
     )
   }
 
+  /*
+  getEvolutionsByPokemonId()
+  {
+    const evolutions = this.getPokemons().subscribe((pokemons) => pokemons.find())
+  }*/
+
   getPokemonById(id: string) : Observable<Pokemon>
   {
     return this.http.get<Pokemon>(`${this.baseUrl}/${id}`)
+  }
+
+  getPokemonsSnapshots() : Observable<Partial<Pokemon>[] | any>
+  {
+      return this.http.get<Partial<Pokemon>[]>(this.baseUrl).pipe(
+        map(pokemons => {
+          return pokemons.map(pokemon => {
+            return {
+              id: pokemon.id,
+              name: pokemon.name,
+              types: pokemon.types,
+            }
+          })
+        }),
+  
+        catchError(error => {
+          console.log(error)
+          return []
+        })
+      )
   }
 
   postPokemon(pokemon: Partial<Pokemon>): Observable<Pokemon>
@@ -67,4 +93,6 @@ export class PokemonService
   {
     return this.http.delete(`${this.baseUrl}/${id}`)
   }
+
+
 }

@@ -2,18 +2,21 @@
   "pokemons": [
     {
       "name": "Pikachu",
-      "type": [
+      "types": [
         "Electric"
       ],
       "lvl": "1",
-      "evolutionIds": ["p0k7"],
+      "evolutionIds": [
+        "p0k7"
+      ],
       "abilities": [],
       "id": "o2k1"
     },
     {
       "name": "Arcanine",
-      "type": [
-        "Fire", "Earth"
+      "types": [
+        "Fire",
+        "Earth"
       ],
       "lvl": "20",
       "evolutionIds": [],
@@ -23,7 +26,7 @@
     {
       "id": "i8j2",
       "name": "Bulbasaur",
-      "type": [
+      "types": [
         "Water"
       ],
       "lvl": "10",
@@ -38,7 +41,7 @@
     {
       "id": "p0k7",
       "name": "Raichu",
-      "type": [
+      "types": [
         "Electric"
       ],
       "lvl": "50",

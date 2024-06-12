@@ -15,16 +15,22 @@ export class PokemonFormComponent implements OnInit
   formIsOnEditMode: boolean = false
   pokemonId? : string
   pokemon?: Pokemon
-  addedAbilities: PokemonAbility[] = []
-  addedTypes: string[] = []
-  evolutions: Pokemon[] = []
+
+  abilities: PokemonAbility[] = []
+  types: string[] = []
+  evolutions: string[] = []
+  
+  evolutionsSnapshots: Pokemon[] = []
+  pokemonsSnapshots: Partial<Pokemon>[] = []
+
 
   pokemonForm: FormGroup = this.fb.nonNullable.group({
     name: ['', [Validators.required]],
-    type: ['', [Validators.required]],
+    type: ['', Validators.required],
     lvl: ['1', [Validators.required, Validators.min(1)]],
-    evolutionIds: [],
-    abilities: []
+    evolutionId: [''],
+    abilityName: [''],
+    abilityDesc: ['']
   })
 
   constructor(private fb: FormBuilder, 
@@ -42,9 +48,8 @@ export class PokemonFormComponent implements OnInit
       this.formIsOnEditMode = true
       this.pokemonService.getPokemonById(this.pokemonId).subscribe((pokemon) => {
         this.pokemon = pokemon
-        console.log(this.pokemon)
         this.pokemon.evolutionIds?.forEach((id) => this.pokemonService.getPokemonById(id).subscribe((pokemon) => {
-          this.evolutions.push(pokemon)
+          this.evolutionsSnapshots.push(pokemon)
         }))
         this.updateForm(pokemon)
       })
@@ -55,13 +60,12 @@ export class PokemonFormComponent implements OnInit
   {
     if(this.pokemonForm.invalid) return
 
-    //refactor to accept evolutionId and abilities later
     const pokemon: Pokemon = {
       name: this.pokemonForm.controls['name'].value,
-      type: this.pokemonForm.controls['type'].value,
       lvl: this.pokemonForm.controls['lvl'].value,
-      evolutionIds: [],
-      abilities: []
+      types: this.types,
+      abilities: this.abilities,
+      evolutionIds: this.evolutions
      }
 
     //update 
@@ -70,8 +74,9 @@ export class PokemonFormComponent implements OnInit
       this.pokemonService.updatePokemon(this.pokemonId, pokemon)
         .subscribe((pokemon) => this.router.navigate(['home']))
     } else { //create new
-      this.pokemonService.postPokemon(pokemon)
-        .subscribe((pokemon) => this.router.navigate(['home']))
+      console.log("to submit", pokemon)
+      //this.pokemonService.postPokemon(pokemon)
+        //.subscribe((pokemon) => this.router.navigate(['home']))
     }
 
     console.log("new pokemon: ", pokemon)
@@ -90,5 +95,52 @@ export class PokemonFormComponent implements OnInit
       && this.pokemonForm.controls[field].touched
   }
 
+  addType(typesDialog: HTMLDialogElement)
+  {
+    const type = this.pokemonForm.controls['type'].value
+
+    this.types.push(type)
+  
+    typesDialog.close()
+  }
+
+  addAbility(abilityDialog: HTMLDialogElement)
+  {
+    const abilityName = this.pokemonForm.controls['abilityName'].value
+    const abilityDesc = this.pokemonForm.controls['abilityDesc'].value
+
+    const ability: PokemonAbility = {
+      name: abilityName,
+      description: abilityDesc
+    }
+
+    this.abilities.push(ability)
+
+    abilityDialog.close()
+  }
+
+  addEvolution(evolutionDialog: HTMLDialogElement)
+  {
+    const pokemonEvolutionId = this.pokemonForm.controls['evolutionId'].value
+    this.evolutions.push(pokemonEvolutionId)
+    evolutionDialog.close()
+  }
+
+  showEvolutionMenu(evolutionDialog: HTMLDialogElement)
+  {
+    console.log(this.pokemonsSnapshots)
+
+    this.pokemonService.getPokemonsSnapshots().subscribe({
+      next: (pokemons) => {
+        this.pokemonsSnapshots = pokemons
+        console.log(this.pokemonsSnapshots)
+      },
+      error: (error) =>{
+        alert(error)
+      }
+    })
+
+    evolutionDialog.show()
+  }
 
 }
