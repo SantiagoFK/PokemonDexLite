@@ -52,6 +52,39 @@
           "description": "The user hurls an electric orb at the target. The faster the user is than the target, the greater the damage"
         }
       ]
+    },
+    {
+      "id": "c766",
+      "name": "charisard",
+      "lvl": 5,
+      "types": [
+        "fire"
+      ],
+      "abilities": [
+        {
+          "name": "fireball",
+          "description": "throws fireball"
+        }
+      ],
+      "evolutionIds": []
+    },
+    {
+      "id": "1bb3",
+      "name": "pidgey",
+      "lvl": 10,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "abilities": [
+        {
+          "name": "wind",
+          "description": "throws wind"
+        }
+      ],
+      "evolutionIds": [
+        "i8j2"
+      ]
     }
   ]
 }

@@ -72,11 +72,12 @@ export class PokemonFormComponent implements OnInit
     if( this.pokemonId )
     {
       this.pokemonService.updatePokemon(this.pokemonId, pokemon)
-        .subscribe((pokemon) => this.router.navigate(['home']))
-    } else { //create new
+        .subscribe(() => this.router.navigate(['home']))
+    } else { 
+      //create new
       console.log("to submit", pokemon)
-      //this.pokemonService.postPokemon(pokemon)
-        //.subscribe((pokemon) => this.router.navigate(['home']))
+      this.pokemonService.postPokemon(pokemon)
+        .subscribe(() => this.router.navigate(['home']))
     }
 
     console.log("new pokemon: ", pokemon)
@@ -84,9 +85,16 @@ export class PokemonFormComponent implements OnInit
 
   updateForm(pokemon: Pokemon)
   {
-    let { id: _, ...pokemonForm} = pokemon
 
-    this.pokemonForm.setValue(pokemonForm)
+    this.pokemonForm = this.fb.nonNullable.group({
+      name: [pokemon.name, [Validators.required]],
+      type: ['', Validators.required],
+      lvl: [pokemon.lvl, [Validators.required, Validators.min(1)]]
+    })
+
+    this.types = pokemon.types
+    this.evolutions = pokemon.evolutionIds!
+    this.abilities = pokemon.abilities!
   }
 
   validateField(field: string, errorType: string): boolean

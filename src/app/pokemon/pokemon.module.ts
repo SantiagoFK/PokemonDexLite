@@ -6,6 +6,8 @@ import { OnePokemonComponent } from './components/one-pokemon/one-pokemon.compon
 import { PokedexLiteComponent } from './components/pokedex-lite/pokedex-lite.component';
 import { PokedexLitePageComponent } from './pages/pokedex-lite-page/pokedex-lite-page.component';
 import { PokemonFormComponent } from './components/pokemon-form/pokemon-form.component';
+import { PokemonCreateComponent } from './components/pokemon-create/pokemon-create.component';
+import { PokemonEditComponent } from './components/pokemon-edit/pokemon-edit.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { PokemonFormComponent } from './components/pokemon-form/pokemon-form.com
     OnePokemonComponent,
     PokedexLiteComponent,
     PokedexLitePageComponent,
-    PokemonFormComponent
+    PokemonFormComponent,
+    PokemonCreateComponent,
+    PokemonEditComponent
   ],
   imports: [
     SharedModule, 
