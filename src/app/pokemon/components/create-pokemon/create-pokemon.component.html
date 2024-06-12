@@ -17,5 +17,18 @@
         </span>
     </div>
 
-    <button type="submit" class="form-btn">Create</button>
+    <div>
+        <label for="lvl">Lvl found:</label><br>
+        <input type="number" name="lvl" id="lvl" formControlName="lvl" min="1">
+
+        <span *ngIf="validateField('lvl', 'required')">
+            This field is required.
+        </span>
+
+        <span *ngIf="validateField('lvl', 'min')">
+            Lvl cannot be above 1.
+        </span>
+    </div>
+
+    <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid">Create</button>
 </form>

@@ -1,24 +1,64 @@
 {
-    "pokemons": [
+  "pokemons": [
+    {
+      "id": "o2k1",
+      "name": "Pikachu",
+      "type": [
+        "Electric"
+      ],
+      "lvl": "1",
+      "evolutionIds": ["p0k7"],
+      "abilities": [
         {
-            "id": 1,
-            "name": "Arcanine",
-            "type": "Fire"
-        },
-        {
-            "id": 2,
-            "name": "Buizel",
-            "type": "Water"
-        },
-        {
-            "id": 3,
-            "name": "Pikachu",
-            "type": "Electric"
-        },
-        {
-            "id": 4,
-            "name": "Snivy",
-            "type": "Grass"
+          "name": "Static",
+          "description": "Shock the target, with a potential to inflict paralysis."
         }
-    ]
+      ]
+    },
+    {
+      "id": "zd23",
+      "name": "Arcanine",
+      "type": [
+        "Fire"
+      ],
+      "lvl": "20",
+      "evolutionIds": [],
+      "abilities": [
+        {
+          "name": "Byte",
+          "description": "An attack that may cause flinching"
+        }
+      ]
+    },
+    {
+      "id": "i8j2",
+      "name": "Bulbasaur",
+      "type": [
+        "Water"
+      ],
+      "lvl": "10",
+      "evolutionIds": [],
+      "abilities": [
+        {
+          "name": "Growl",
+          "description": "Reduces the foe’s ATTACK"
+        }
+      ]
+    },
+    {
+      "id": "p0k7",
+      "name": "Raichu",
+      "type": [
+        "Electric"
+      ],
+      "lvl": "50",
+      "evolutionIds": [],
+      "abilities": [
+        {
+          "name": "Electro Ball",
+          "description": "The user hurls an electric orb at the target. The faster the user is than the target, the greater the damage"
+        }
+      ]
+    }
+  ]
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PokemonService } from '../../services/pokemon.service';
 import { Router } from '@angular/router';
+import { Pokemon } from '../../interfaces/pokemon.interface';
 
 @Component({
   selector: 'app-create-pokemon',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class CreatePokemonComponent {
   pokemonForm: FormGroup = this.fb.nonNullable.group({
     name: ['', [Validators.required]],
-    type: ['', [Validators.required]]
+    type: ['', [Validators.required]],
+    lvl: ['1', [Validators.required, Validators.min(1)]]
   })
 
   constructor(private fb: FormBuilder, 
@@ -20,14 +22,19 @@ export class CreatePokemonComponent {
 
   create()
   {
-    if(this.pokemonForm.valid)
-    {
-      const name = this.pokemonForm.controls['name'].value
-      const type = this.pokemonForm.controls['type'].value
+    if(this.pokemonForm.invalid) return
+  
+    const pokemon: Pokemon = {
+      name: this.pokemonForm.controls['name'].value,
+      type: this.pokemonForm.controls['type'].value,
+      lvl: this.pokemonForm.controls['lvl'].value,
+      evolutionIds: [],
+      abilities: [],
+     }
+    
+    this.pokemonService.postPokemon(pokemon).subscribe((pokemon) => this.router.navigate(['home']))
 
-      console.log(`New pokemon: ${name}, ${type}`)
-      this.router.navigate([''])
-    }
+    console.log("new pokemon: ", pokemon)
   }
 
   validateField(field: string, errorType: string): boolean

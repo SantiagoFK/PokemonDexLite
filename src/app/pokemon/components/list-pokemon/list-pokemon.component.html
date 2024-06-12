@@ -1,9 +1,6 @@
-<p>Pokemon list</p>
+<h3>Pokemons</h3>
 
-<div>
-    <h3>Pokemons</h3>
-    <div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy">
-        <app-one-pokemon [pokemon]="pokemon"></app-one-pokemon>
-    </div>
+<div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy">
+    <app-one-pokemon [pokemon]="pokemon"></app-one-pokemon>
 </div>
-    
+

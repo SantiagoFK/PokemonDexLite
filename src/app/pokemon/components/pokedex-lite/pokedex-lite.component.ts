@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon, PokemonList } from '../../interfaces/pokemon.interface';
+import { Pokemon} from '../../interfaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class PokedexLiteComponent implements OnInit
       {
         next: (pokemons) => {
           this.pokemons = pokemons
+          console.log(this.pokemons)
         },
         error: (error) => {
           console.log(error)

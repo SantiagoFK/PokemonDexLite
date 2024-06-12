@@ -1,8 +1,11 @@
+import { PokemonAbility } from "./pokemonAbility.interface";
+
 export interface Pokemon
 {
-    id: number,
+    id?: string,
     name: string,
-    type: string
+    type: string[],
+    lvl: number,
+    evolutionIds: string[],
+    abilities: PokemonAbility[]
 }
-
-export type PokemonList = Array<Pokemon>

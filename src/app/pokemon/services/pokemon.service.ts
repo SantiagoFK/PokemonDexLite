@@ -11,7 +11,7 @@ export class PokemonService
 {
   baseUrl = environment.pokemonsBaseUrl
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient){ }
 
   getPokemons(): Observable<Pokemon[] | any>
   {
@@ -21,7 +21,10 @@ export class PokemonService
           return {
             id: pokemon.id,
             name: pokemon.name,
-            type: pokemon.type
+            type: pokemon.type,
+            lvl: pokemon.lvl,
+            evolutionIds: pokemon.evolutionIds,
+            abilities: pokemon.abilities
           }
         })
       }),
@@ -31,5 +34,37 @@ export class PokemonService
         return []
       })
     )
+  }
+
+  getPokemonById(id: string) : Observable<Pokemon>
+  {
+    return this.http.get<Pokemon>(`${this.baseUrl}/${id}`)
+  }
+
+  postPokemon(pokemon: Partial<Pokemon>): Observable<Pokemon>
+  {
+      return this.http.post<Pokemon>(
+        this.baseUrl,
+        pokemon,
+        {
+          headers: { 'Content-type': 'application/json'}
+        }
+      )
+  }
+
+  updatePokemon(id: string, pokemon: Partial<Pokemon>): Observable<Pokemon>
+  {
+    return this.http.put<Pokemon>(
+      `${this.baseUrl}/${id}`,
+      pokemon,
+      {
+        headers: { 'Content-type': 'application/json' }
+      }
+    )
+  }
+  
+  deletePokemon(id: string)
+  {
+    return this.http.delete(`${this.baseUrl}/${id}`)
   }
 }
