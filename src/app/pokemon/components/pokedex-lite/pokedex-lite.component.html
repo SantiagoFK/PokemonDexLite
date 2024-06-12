@@ -1,9 +1,14 @@
 <main>
     <h1>Pokedex</h1>
     
-    <app-list-pokemon [pokemons]="pokemons"></app-list-pokemon>
+    <app-list-pokemon 
+        [pokemons]="pokemons" 
+        (deleteEvent)="deletePokemon($event)"
+        (detailsEvent)="details($event)"
+        (editEvent)="editPokemon($event)"
+    />
     
-    <a href="" routerLink="create">New Pokemon</a>
+    <a href="" routerLink="pokemon">New Pokemon</a>
 
     <button>Refresh</button>
 </main>

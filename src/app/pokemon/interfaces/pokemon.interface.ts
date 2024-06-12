@@ -6,6 +6,6 @@ export interface Pokemon
     name: string,
     type: string[],
     lvl: number,
-    evolutionIds: string[],
-    abilities: PokemonAbility[]
+    evolutionIds?: string[],
+    abilities?: PokemonAbility[]
 }

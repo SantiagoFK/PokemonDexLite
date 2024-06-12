@@ -1,34 +1,24 @@
 {
   "pokemons": [
     {
-      "id": "o2k1",
       "name": "Pikachu",
       "type": [
         "Electric"
       ],
       "lvl": "1",
       "evolutionIds": ["p0k7"],
-      "abilities": [
-        {
-          "name": "Static",
-          "description": "Shock the target, with a potential to inflict paralysis."
-        }
-      ]
+      "abilities": [],
+      "id": "o2k1"
     },
     {
-      "id": "zd23",
       "name": "Arcanine",
       "type": [
-        "Fire"
+        "Fire", "Earth"
       ],
       "lvl": "20",
       "evolutionIds": [],
-      "abilities": [
-        {
-          "name": "Byte",
-          "description": "An attack that may cause flinching"
-        }
-      ]
+      "abilities": [],
+      "id": "zd23"
     },
     {
       "id": "i8j2",

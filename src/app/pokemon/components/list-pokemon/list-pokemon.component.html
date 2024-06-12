@@ -1,6 +1,10 @@
 <h3>Pokemons</h3>
 
 <div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy">
-    <app-one-pokemon [pokemon]="pokemon"></app-one-pokemon>
+    <app-one-pokemon [pokemon]="pokemon" />
+
+    <button (click)="onDetails(pokemon)">Details</button>
+    <button (click)="onEdit(pokemon)">Edit</button>
+    <button (click)="onDelete(pokemon.id!)">Delete</button>
 </div>
 

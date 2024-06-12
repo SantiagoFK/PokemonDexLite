@@ -1,0 +1,111 @@
+<form (submit)="submitPokemon()" [formGroup]="pokemonForm">
+    <div>
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name" formControlName="name">
+
+        <span *ngIf="validateField('name', 'required')">
+            This field is required.
+        </span>
+    </div>
+
+    <div>
+        <p>Types: </p>
+        <div *ngIf="this.formIsOnEditMode">
+            <p *ngFor="let type of this.pokemon?.type">
+                {{ type }}
+            </p>
+        </div>
+    
+        <dialog #typesDialog>
+            <div>
+                <div>
+                    <label for="">Type:</label>
+                    <input type="text">
+                </div>
+
+                <button (click)="typesDialog.close()">Finish</button>
+            </div>
+        </dialog>
+
+        <button (click)="typesDialog.show()">Add type</button>
+    </div>
+
+    <div>
+        <label for="lvl">Lvl found:</label><br>
+        <input type="number" name="lvl" id="lvl" formControlName="lvl" min="1">
+
+        <span *ngIf="validateField('lvl', 'required')">
+            This field is required.
+        </span>
+
+        <span *ngIf="validateField('lvl', 'min')">
+            Lvl cannot be above 1.
+        </span>
+    </div>
+
+    <div *ngIf="! this.formIsOnEditMode ">
+        <p>Abilities: {{ this.addedAbilities.length}}</p>
+        
+        <dialog #abilityDialog>
+            <div>
+                <div>
+                    <label for="">Name:</label>
+                    <input type="text">
+                </div>
+                
+                <label for="">Description:</label>
+                <input type="text">
+
+                <button (click)="abilityDialog.close()">Finish</button>
+            </div>
+        </dialog>
+
+        <button (click)="abilityDialog.show()">Add ability</button>
+    </div>
+
+    <div *ngIf="this.formIsOnEditMode">
+        <div *ngIf="this.pokemon?.abilities;else noAbilities" >
+            <label for="abilities">Abilities:</label>
+            <div *ngFor="let ability of pokemon?.abilities">
+                <input type="text" value="{{ability.name}}">
+                <input type="text" value="{{ability.description}}">
+            </div>
+        </div>
+    
+        <ng-template #noAbilities> 
+            <p>No abilities registered yet.</p>
+        </ng-template>
+    
+        <div *ngIf="this.pokemon?.evolutionIds?.length;else noEvolutions">
+            <label for="Evolutions">Evolutions:</label>
+            <div *ngFor="let evolution of this.evolutions">
+                <app-one-pokemon [pokemon]="evolution"/>
+            </div>
+        </div>
+    
+        <ng-template #noEvolutions>
+            <p>No evolutions registered yet.</p>
+        </ng-template>
+
+    </div>
+
+    <div *ngIf="! this.formIsOnEditMode">
+        <label for="abilities">Abilities:</label> <br>
+        <dialog #evolutionDialog>
+            <div>
+                <div>
+                    <label for="">Name:</label>
+                    <input type="text">
+                </div>
+
+                <button (click)="evolutionDialog.close()">Finish</button>
+            </div>
+        </dialog>
+
+        <button (click)="evolutionDialog.show()">Add Evolution</button>
+    </div>
+
+    <input type="hidden" name="name" id="name" formControlName="evolutionIds">
+
+    <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid">Create</button>
+</form>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPokemonComponent } from './edit-pokemon.component';
+import { PokemonFormComponent } from './pokemon-form.component';
 
-describe('EditPokemonComponent', () => {
-  let component: EditPokemonComponent;
-  let fixture: ComponentFixture<EditPokemonComponent>;
+describe('PokemonFormComponent', () => {
+  let component: PokemonFormComponent;
+  let fixture: ComponentFixture<PokemonFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditPokemonComponent]
+      declarations: [PokemonFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditPokemonComponent);
+    fixture = TestBed.createComponent(PokemonFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
