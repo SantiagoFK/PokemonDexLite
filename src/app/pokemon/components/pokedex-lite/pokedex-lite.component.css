@@ -1,8 +1,8 @@
 .create-btn
 {
-    background-color: brown;
     width: fit-content;
     margin: 0 auto;
+    margin-bottom: 4%;
     color: var(--app-blue);
     font-size: 3.5rem;
     transition: transform 0.1s ease-in-out 0s;
@@ -32,7 +32,7 @@
 @media (min-width: 576px) {  
     .create-btn
     {
-        margin: 0% 2% 2% 0;
+        margin: 0% 1% 1% 0;
         position: fixed;
         bottom: 0;
         right: 0;

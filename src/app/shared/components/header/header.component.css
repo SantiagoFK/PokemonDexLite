@@ -1,3 +1,11 @@
+
 header{
-    min-height: 70px;
+    min-height: 50px;
 }
+
+@media (min-width: 1200px) { 
+  
+   header{
+    min-height: 80px;
+   }
+ }

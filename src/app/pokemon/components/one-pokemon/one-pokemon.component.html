@@ -1,5 +1,8 @@
 <div class="pokemon">
-    <p class="pokemon-type centered">{{ pokemon.types }} </p>
+    <!-- show only the first type of the array in the snapshot-->
+    <p class="pokemon-type centered">
+        {{ pokemon.types.pop() }} 
+    </p>
 
     <p class="pokemon-name centered">{{ pokemon.name }} </p>
 

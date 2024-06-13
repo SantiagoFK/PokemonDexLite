@@ -1,6 +1,14 @@
+<div class="form-container">
+<h2 *ngIf="! this.formIsOnEditMode; else editTitle">Create Pokemon</h2>
+
+<ng-template #editTitle>
+    <h2>Edit Pokemon</h2>
+</ng-template>
+
 <form  [formGroup]="pokemonForm">
-    <div>
-        <label for="name">Name:</label><br>
+    <!-- name -->
+    <div class="input-container">
+        <label for="name" class="form-label">Name:</label><br>
         <input type="text" name="name" id="name" formControlName="name">
 
         <span *ngIf="validateField('name', 'required')">
@@ -8,13 +16,21 @@
         </span>
     </div>
 
-    <div>
-        <p>Types: </p>
-        <div *ngIf="this.formIsOnEditMode || this.types.length > 0">
-            <span *ngFor="let type of this.types">
-                {{ type }}
-            </span>
+    <!-- types -->
+
+    <div class="input-container">
+        <p class="form-label">Types: </p>
+        <div *ngIf="this.types.length > 0;else noTypes">
+            <div class="types-container">
+                <span *ngFor="let type of this.types" class="new-type">
+                    {{ type }}
+                </span>
+            </div>
         </div>
+
+        <ng-template #noTypes>
+            <p class="no-entities">No types registered yet.</p>
+        </ng-template>
     
         <dialog #typesDialog>
             <div>
@@ -30,8 +46,9 @@
         <button (click)="typesDialog.show()">Add type</button>
     </div>
 
-    <div>
-        <label for="lvl">Lvl found:</label><br>
+    <!-- lvl found -->
+    <div class="input-container">
+        <label for="lvl" class="form-label">Lvl found:</label><br>
         <input type="number" name="lvl" id="lvl" formControlName="lvl" min="1">
 
         <span *ngIf="validateField('lvl', 'required')">
@@ -43,8 +60,9 @@
         </span>
     </div>
 
-    <div>
-        <p>Abilities: {{ this.abilities.length}}</p>
+    <!-- abilities -->
+    <div class="input-container">
+        <p class="form-label">Abilities: {{ this.abilities.length}}</p>
         
         <dialog #abilityDialog>
             <div>
@@ -62,51 +80,39 @@
             </div>
         </dialog>
 
-        <button (click)="abilityDialog.show()">Add ability</button>
-    </div>
     
-
-    <div *ngIf="this.formIsOnEditMode">
-        <div *ngIf="this.pokemon?.abilities; else noAbilities" >
-            <p>Abilities:</p>
-            <div *ngFor="let ability of pokemon?.abilities">
-                <p>{{ ability.name}}</p>
-                <p>{{ ability.description}}</p>
+        <div *ngIf="this.pokemon?.abilities?.length; else noAbilities" >
+            <div *ngFor="let ability of pokemon?.abilities" class="ability-container">
+                <p class="ability-name">{{ ability.name}} </p>
+                <p class="ability-description">{{ ability.description}}</p>
             </div>
         </div>
 
         <ng-template #noAbilities>
-            <p>No abilities registered yet.</p>
+            <p class="no-entities">No abilities registered yet.</p>
         </ng-template>
-    
+        
+        <button (click)="abilityDialog.show()">Add ability</button>
+    </div>
+
+    <!-- evolutions -->
+    <div class="input-container">
+        <p class="form-label">Evolutions: {{ this.evolutions.length }}</p>
+
         <div *ngIf="this.pokemon?.evolutionIds?.length; else noEvolutions">
-            <label for="Evolutions">Evolutions:</label>
-            <div *ngFor="let evolution of this.evolutionsSnapshots">
+            <div *ngFor="let evolution of this.evolutionsSnapshots" class="evolution-snapshot">
                 <app-one-pokemon [pokemon]="evolution"/>
             </div>
         </div>
-    
+
         <ng-template #noEvolutions>
-            <p>No evolutions registered yet.</p>
+            <p class="no-entities">No evolutions registered yet.</p>
         </ng-template>
 
-    </div>
-
-    <div *ngIf="!this.formIsOnEditMode">
-        <p>Evolutions: {{ this.evolutions.length }}</p> <br>
+        
         <dialog #evolutionDialog>
             <div>
                 <p>Evolutions</p>
-                
-                <!--
-                <div>
-                    <input type="radio" id="evolutionChoice1" name="choice" value="email" />
-                    <label for="evolutionChoice1">Create a new Pokemon:</label><br>
-                    <input type="text" placeholder="Name"><br>
-                    <input type="text" placeholder="Type"><br>
-                    <input type="text" placeholder="Lvl"><br>
-                </div>
-                -->
                 
                 <input type="radio" id="evolutionChoice2" name="choice" value="email" />
                 <label for="evolutionChoice2">Add from existing pokemon:</label><br>
@@ -124,5 +130,6 @@
         <button (click)="showEvolutionMenu(evolutionDialog)">Add Evolution</button>
     </div>
 
-    <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid" (click)="submitPokemon()">Create</button>
+    <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid" (click)="submitPokemon()">Save</button>
 </form>
+</div>

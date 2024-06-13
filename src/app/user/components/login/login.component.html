@@ -1,22 +1,25 @@
-<form (submit)="login()" [formGroup]="userForm">
-    <div>
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" id="username" formControlName="username">
+<div class="form-container">
+    <h2>Login</h2>
+    <form (submit)="login()" [formGroup]="userForm">
+        <div class="input-container">
+            <label for="username" class="form-label">Username:</label><br>
+            <input type="text" name="username" id="username" formControlName="username">
 
-        <span *ngIf="validateField('username', 'required')">
-            This field is required.
-        </span>
-    </div>
+            <span *ngIf="validateField('username', 'required')">
+                This field is required.
+            </span>
+        </div>
 
-    <div>
-        <label for="password">Password:</label><br>
+        <div class="input-container">
+            <label for="password" class="form-label">Password:</label><br>
 
-        <input type="password" name="password" id="password" formControlName="password">
+            <input type="password" name="password" id="password" formControlName="password">
 
-        <span *ngIf="validateField('password', 'required')">
-            This field is required.
-        </span>
-    </div>
+            <span *ngIf="validateField('password', 'required')">
+                This field is required.
+            </span>
+        </div>
 
-    <button type="submit" class="form-btn">Login</button>
-</form>
+        <button type="submit" class="form-btn">Login</button>
+    </form>
+</div>
