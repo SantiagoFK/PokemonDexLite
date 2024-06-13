@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+/*normalize*/
+@import url('./assets/css/normalize.css');
+
+/*bootstrap icons*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+@font-face {
+    src: url('./assets/fonts/Outfit-Regular.ttf');
+    font-family: "main-font";
+}
+
+/*CSS Variables*/
+:root{
+    --app-white: whitesmoke;
+    --app-blue: navy;
+}
+
+
+*, h1, a{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    color: var(--app-white)
+}
+
+a:hover{
+    color: yellow;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: var(--app-white);
+    color: var(--app-white);
+    font-size: 1.5rem;
+    font-family: "main-font", sans-serif;
+    text-shadow: 1px 1px 1px black;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/************************************** scroll bar ***************************/
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: snow;
+}

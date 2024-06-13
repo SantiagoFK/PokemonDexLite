@@ -42,7 +42,7 @@ export class UserService
 
   }
 
-  userIsLoggedIn(): Observable<Boolean>
+  userIsLoggedIn(): Observable<boolean>
   {
     const userId = localStorage.getItem('userId')
     if( !userId ) return of(false)

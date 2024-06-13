@@ -1,0 +1,13 @@
+.pokemons-container
+{
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    padding: 1%
+}
+
+.hidden
+{
+    display: none;
+}
+

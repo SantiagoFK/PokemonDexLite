@@ -1,0 +1,39 @@
+<nav>
+    <div class="nav-brand">
+        <a href="" routerLink="">
+            <p> Pokedex </p>
+        </a>
+    </div>
+
+    <div class="desktop-nav">
+        <a routerLink="" class="nav-page">Home</a>
+
+        <div id="dropdown">
+            <a href="" id="dropdown-btn">Pokemon</a>
+            <div id="dropdown-content">
+                <a href="#">List</a>
+                <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
+            </div>
+        </div>
+        
+        <a href="" class="nav-page"> Username </a>
+
+        <a href="" class="nav-page" (click)="logout()">Logout</a>
+    </div>
+
+    <div class="mobile-nav">
+        <p class="sidebar-open-btn" (click)="openSideBar()"><i class="bi bi-list"></i></p>
+
+        <div class="mobile-side-navbar" [ngClass]="mobileMode ? 'expanded' : ''">
+            <p class="sidebar-close-btn" (click)="closeSideBar()">&times;</p>
+
+            <a href="#">Pokemons</a>
+
+            <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
+    
+            <a href=""> Username </a>
+    
+            <a href="" (click)="logout()">Logout</a>
+        </div>
+    </div>
+</nav>

@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { UserModule } from './user/user.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { UserModule } from './user/user.module';
   imports: [
     BrowserModule,
     PokemonModule,
+    SharedModule,
     UserModule,
     AppRoutingModule
   ],

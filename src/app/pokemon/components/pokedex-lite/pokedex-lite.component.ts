@@ -25,7 +25,6 @@ export class PokedexLiteComponent implements OnInit
       {
         next: (pokemons) => {
           this.pokemons = pokemons
-          console.log(this.pokemons)
         },
         error: (error) => {
           console.log(error)

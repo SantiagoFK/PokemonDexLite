@@ -3,10 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    ErrorPageComponent
+    ErrorPageComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +22,10 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
   exports: [
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent
   ]
 })
 export class SharedModule { }
