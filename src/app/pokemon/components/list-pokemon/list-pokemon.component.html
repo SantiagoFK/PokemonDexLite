@@ -1,13 +1,14 @@
 
-<div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy" class="pokemons-container">
+<div class="pokemon-list-container">
+    <div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy" class="pokemon-container">
     
-    <app-one-pokemon [pokemon]="pokemon" />
+        <app-one-pokemon [pokemon]="pokemon" />
 
-    <div>
-        <button (click)="onDetails(pokemon)">Details</button>
-        <button (click)="onEdit(pokemon)">Edit</button>
-        <button (click)="onDelete(pokemon.id!)">Delete</button>
+        <div class="pokemon-actions">
+            <button (click)="onDetails(pokemon)" class="action-btn">Details</button>
+            <button (click)="onEdit(pokemon)" class="action-btn">Edit</button>
+            <button (click)="onDelete(pokemon.id!)" class="action-btn">Delete</button>
+        </div> 
+
     </div>
-
 </div>
-

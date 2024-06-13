@@ -1,10 +1,8 @@
-<app-list-pokemon 
-    [pokemons]="pokemons" 
-    (deleteEvent)="deletePokemon($event)"
-    (detailsEvent)="details($event)"
-    (editEvent)="editPokemon($event)"
-/>
+<app-list-pokemon [pokemons]="pokemons" 
+        (deleteEvent)="deletePokemon($event)"
+        (detailsEvent)="details($event)"
+        (editEvent)="editPokemon($event)"/>
 
-<a href="" routerLink="pokemon">New Pokemon</a>
-
-<button>Refresh</button>
+<div class="create-btn centered">
+    <a href="" routerLink="pokemon"><i class="bi bi-plus-circle"></i></a>
+</div>

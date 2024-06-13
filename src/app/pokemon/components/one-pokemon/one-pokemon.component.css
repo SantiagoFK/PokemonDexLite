@@ -1,8 +1,7 @@
 .pokemon{
     display: flex;
     flex-direction: row;
-    padding: 5px;
-    min-height: 60px;
+    min-height: 40px;
     width: 95%;
     margin: 0 auto;
     background: green;
@@ -14,20 +13,73 @@
 }
 
 .pokemon-type{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    width: 25%;
     background-color: wheat;
 }
 
 .pokemon-name{
-    width: 70%;
+    width: 100%;
     background-color: red;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 .pokemon-lvl{
-    width: 15%;
+    display: none;
+    width: 25%;
     background-color: violet;
+}
+
+@media (min-width: 320px)
+{
+
+}
+
+@media(min-width: 420px)
+{
+    .pokemon-type{
+        display: flex;
+    }
+
+    .pokemon-name{
+        width: 70%;
+    }
+
+    .pokemon-lvl{
+        display: flex;
+    }
+
+    .pokemon{
+        min-height: 60px;
+    }
+}
+
+@media (min-width: 576px) {  
+    .pokemon{
+        min-height: 70px;
+    }
+}
+
+@media (min-width: 768px) { 
+
+ }
+
+
+@media (min-width: 992px) 
+{ 
+
+
+}
+
+
+@media (min-width: 1200px) { 
+  
+
+ }
+
+
+@media (min-width: 1400px) {  
+    
 }
