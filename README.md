@@ -3,7 +3,11 @@
 To run this project please do the following steps:
 
 1) Download repository or clone it.
-2) run following command:<code> npm install </code>
+2) run following command to download node modules: <code> npm install </code>
+3) run following command to run pokemon backend (it runs on port 3000): <code> npm run pokemonBackend </code>
+( If this previous command causes any error, please run this command to install json-server globally: <code> npm i -g json-server</code> )
+4) Start another cmd window then run following command to run user backend (runs on port 3001) : <code> npm run userBackend </code>
+5) Start another cmd window then run Angular application: <code> ng s -o </code>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
