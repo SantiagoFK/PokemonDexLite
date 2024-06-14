@@ -1,5 +1,10 @@
 # PokemonDexLite
 
+To run this project please do the following steps:
+
+1) Download repository or clone it.
+2) run following command:<code> npm install </code>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
 ## Development server
