@@ -197,7 +197,6 @@ dialog{
         font-size: 2rem;
     }
 
-
  }
 
 
@@ -212,14 +211,4 @@ dialog{
         font-size: 2.2rem;
     }
 
-}
-
-
-@media (min-width: 1200px) { 
-
- }
-
-
-@media (min-width: 1400px) {  
-    
 }

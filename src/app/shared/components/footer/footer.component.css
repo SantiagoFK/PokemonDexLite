@@ -16,11 +16,6 @@ footer{
     }
 }
 
-@media(min-width: 420px)
-{
- 
-}
-
 @media (min-width: 576px) {  
     footer{
         font-size: 1.7rem;
@@ -41,15 +36,4 @@ footer{
         font-size: 2.2rem;
     }
 
-}
-
-
-@media (min-width: 1200px) { 
-  
-
- }
-
-
-@media (min-width: 1400px) {  
- 
 }

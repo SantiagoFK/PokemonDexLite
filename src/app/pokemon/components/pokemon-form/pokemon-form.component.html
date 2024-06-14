@@ -5,7 +5,7 @@
         <h2>Edit Pokemon</h2>
     </ng-template>
 
-    <form [formGroup]="pokemonForm">
+    <form [formGroup]="pokemonForm" (submit)="submitPokemon()">
         <!-- name -->
         <div class="input-container">
             <label for="name" class="form-label">Name:</label><br>
@@ -39,12 +39,12 @@
                 <input type="text" name="type" id="type" formControlName="type">
                 
                 <div class="dialog-actions">
-                    <button (click)="dialogSaveType(typesDialog)">Save</button>
-                    <button (click)="dialogCancelType(typesDialog)">Cancel</button>
+                    <button (click)="dialogSaveType(typesDialog, $event)">Save</button>
+                    <button (click)="dialogCancelType(typesDialog, $event)">Cancel</button>
                 </div>
             </dialog>
 
-            <button (click)="typesDialog.show()">Add type</button>
+            <button (click)="showDialog(typesDialog, $event)">Add type</button>
         </div>
 
         <!-- lvl found -->
@@ -77,8 +77,8 @@
                 <input type="text" name="abilityDesc" id="abilityDesc" formControlName="abilityDesc"><br>
 
                 <div class="dialog-actions">
-                    <button (click)="dialogSaveAbility(abilityDialog)">Save</button>
-                    <button (click)="dialogCancelAbility(abilityDialog)">Cancel</button>
+                    <button (click)="dialogSaveAbility(abilityDialog, $event)">Save</button>
+                    <button (click)="dialogCancelAbility(abilityDialog, $event)">Cancel</button>
                 </div>
             </dialog>
 
@@ -98,7 +98,7 @@
                 <p class="no-entities">No abilities registered yet.</p>
             </ng-template>
             
-            <button (click)="abilityDialog.show()">Add ability</button>
+            <button (click)="showDialog(abilityDialog, $event)">Add ability</button>
         </div>
 
         <!-- evolutions -->
@@ -129,14 +129,14 @@
                 </select>
 
                 <div class="dialog-actions">
-                    <button (click)="dialogSaveEvolution(evolutionDialog)">Save</button>
-                    <button (click)="dialogCancelEvolution(evolutionDialog)">Cancel</button>
+                    <button (click)="dialogSaveEvolution(evolutionDialog, $event)">Save</button>
+                    <button (click)="dialogCancelEvolution(evolutionDialog, $event)">Cancel</button>
                 </div>
             </dialog>
 
-            <button (click)="showEvolutionMenu(evolutionDialog)">Add Evolution</button>
+            <button (click)="showEvolutionMenu(evolutionDialog, $event)">Add Evolution</button>
         </div>
 
-        <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid" (click)="submitPokemon()">Save</button>
+        <button class="form-btn">Save</button>
     </form>
 </div>

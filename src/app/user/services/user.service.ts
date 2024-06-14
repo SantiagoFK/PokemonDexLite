@@ -37,11 +37,6 @@ export class UserService
       })
   }
 
-  signup(username: string, password: string)
-  {
-
-  }
-
   userIsLoggedIn(): Observable<boolean>
   {
     const userId = localStorage.getItem('userId')

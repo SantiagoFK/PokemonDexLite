@@ -26,7 +26,7 @@ export class PokemonFormComponent implements OnInit
 
   pokemonForm: FormGroup = this.fb.nonNullable.group({
     name: ['', [Validators.required]],
-    type: ['', Validators.required],
+    type: [''],
     lvl: ['1', [Validators.required, Validators.min(1)]],
     evolutionId: [''],
     abilityName: [''],
@@ -58,7 +58,10 @@ export class PokemonFormComponent implements OnInit
 
   submitPokemon()
   {
-    if(this.pokemonForm.invalid) return
+    if(this.pokemonForm.invalid){
+      alert("Invalid form, please check field values.")
+      return
+    }
 
     const pokemon: Pokemon = {
       name: this.pokemonForm.controls['name'].value,
@@ -67,6 +70,7 @@ export class PokemonFormComponent implements OnInit
       abilities: this.abilities,
       evolutionIds: this.evolutions
      }
+
 
     //update 
     if( this.pokemonId )
@@ -85,7 +89,7 @@ export class PokemonFormComponent implements OnInit
 
     this.pokemonForm = this.fb.nonNullable.group({
       name: [pokemon.name, [Validators.required]],
-      type: ['', Validators.required],
+      type: [''],
       lvl: [pokemon.lvl, [Validators.required, Validators.min(1)]],
       evolutionId: [''],
       abilityName: [''],
@@ -103,8 +107,9 @@ export class PokemonFormComponent implements OnInit
       && this.pokemonForm.controls[field].touched
   }
 
-  dialogSaveType(typesDialog: HTMLDialogElement)
+  dialogSaveType(typesDialog: HTMLDialogElement, event: Event)
   {
+    event.preventDefault()
     const type = this.pokemonForm.controls['type'].value
     
     if(type !== '')
@@ -115,15 +120,19 @@ export class PokemonFormComponent implements OnInit
     typesDialog.close()
   }
 
-  dialogCancelType(typesDialog: HTMLDialogElement)
+  dialogCancelType(typesDialog: HTMLDialogElement, event: Event)
   {
+    event.preventDefault()
+
     this.pokemonForm.controls['type'].reset()
   
     typesDialog.close()
   }
 
-  dialogSaveAbility(abilityDialog: HTMLDialogElement)
+  dialogSaveAbility(abilityDialog: HTMLDialogElement, event: Event)
   {
+    event.preventDefault()
+
     const abilityName = this.pokemonForm.controls['abilityName'].value
     const abilityDesc = this.pokemonForm.controls['abilityDesc'].value
 
@@ -143,16 +152,18 @@ export class PokemonFormComponent implements OnInit
     abilityDialog.close()
   }
 
-  dialogCancelAbility(abilityDialog: HTMLDialogElement)
+  dialogCancelAbility(abilityDialog: HTMLDialogElement, event: Event)
   {
+    event.preventDefault()
     this.pokemonForm.controls['abilityName'].reset()
     this.pokemonForm.controls['abilityDesc'].reset()
   
     abilityDialog.close()
   }
 
-  dialogSaveEvolution(evolutionDialog: HTMLDialogElement)
+  dialogSaveEvolution(evolutionDialog: HTMLDialogElement, event: Event)
   {
+    event.preventDefault()
     const pokemonEvolutionId = this.pokemonForm.controls['evolutionId'].value
 
     if( pokemonEvolutionId !== '' && pokemonEvolutionId !== this.pokemon?.id)
@@ -163,12 +174,13 @@ export class PokemonFormComponent implements OnInit
     evolutionDialog.close()
   }
 
-  dialogCancelEvolution(evolutionDialog: HTMLDialogElement)
+  dialogCancelEvolution(evolutionDialog: HTMLDialogElement, event: Event)
   { 
+    event.preventDefault()
     evolutionDialog.close()
   }
 
-  showEvolutionMenu(evolutionDialog: HTMLDialogElement)
+  showEvolutionMenu(evolutionDialog: HTMLDialogElement, event: Event)
   {
     this.pokemonService.getPokemonsSnapshots().subscribe({
       next: (pokemons) => {
@@ -179,7 +191,7 @@ export class PokemonFormComponent implements OnInit
       }
     })
 
-    evolutionDialog.show()
+    this.showDialog(evolutionDialog, event)
   }
 
   removeType(typeName: string)
@@ -195,6 +207,12 @@ export class PokemonFormComponent implements OnInit
   removeEvolution(evolutionId: string)
   { 
     this.evolutions = this.evolutions.filter((id) => id !== evolutionId)
+  }
+
+  showDialog(dialog: HTMLDialogElement, event:  Event)
+  {
+    event.preventDefault()
+    dialog.show()
   }
 
 }

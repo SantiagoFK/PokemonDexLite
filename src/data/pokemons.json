@@ -54,37 +54,36 @@
       ]
     },
     {
-      "id": "c766",
-      "name": "charisard",
-      "lvl": 5,
+      "name": "Vulpix",
+      "lvl": 65,
       "types": [
-        "fire"
+        "Fire"
       ],
       "abilities": [
         {
-          "name": "fireball",
-          "description": "throws fireball"
-        }
-      ],
-      "evolutionIds": []
-    },
-    {
-      "id": "1bb3",
-      "name": "pidgey",
-      "lvl": 10,
-      "types": [
-        "normal",
-        "flying"
-      ],
-      "abilities": [
-        {
-          "name": "wind",
-          "description": "throws wind"
+          "name": "ab1",
+          "description": "dc1"
         }
       ],
       "evolutionIds": [
-        "i8j2"
-      ]
+        "2c04"
+      ],
+      "id": "7f2b"
+    },
+    {
+      "id": "2c04",
+      "name": "Ninetales",
+      "lvl": 80,
+      "types": [
+        "Fire"
+      ],
+      "abilities": [
+        {
+          "name": "Flamethrower",
+          "description": "An attack that may inflict a burn."
+        }
+      ],
+      "evolutionIds": []
     }
   ]
 }

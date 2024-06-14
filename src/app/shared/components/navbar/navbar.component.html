@@ -10,7 +10,6 @@
             <a href="" id="dropdown-btn" >Pokemon</a>
             <div id="dropdown-content">
                 <a href="">List</a>
-                <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
             </div>
         </div>
         
@@ -26,8 +25,6 @@
             <p class="sidebar-close-btn" (click)="closeSideBar()">&times;</p>
 
             <a href="#">Pokemons</a>
-
-            <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
     
             <a href="">  {{ getUsername( )}} </a>
     
