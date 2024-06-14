@@ -9,14 +9,14 @@
         <div id="dropdown">
             <a href="" id="dropdown-btn">Pokemon</a>
             <div id="dropdown-content">
-                <a href="#">List</a>
+                <a href="">List</a>
                 <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
             </div>
         </div>
         
-        <a href="" class="nav-page"> Username </a>
+        <a href="" class="nav-page" *ngIf="this.userIsLoggedIn"> {{ getUsername( )}} </a>
 
-        <a href="" class="nav-page" (click)="logout()">Logout</a>
+        <a href="" class="nav-page" *ngIf="this.userIsLoggedIn" (click)="logout()">Logout</a>
     </div>
 
     <div class="mobile-nav">
@@ -29,7 +29,7 @@
 
             <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
     
-            <a href=""> Username </a>
+            <a href="" *ngIf="this.userIsLoggedIn">  {{ getUsername( )}} </a>
     
             <a href="" (click)="logout()">Logout</a>
         </div>

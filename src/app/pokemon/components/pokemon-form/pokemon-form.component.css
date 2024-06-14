@@ -14,18 +14,17 @@
 }
 
 .form-label{
-    margin: 4% 0 4% 0;
+    margin: 2% 0 2% 0;
     font-size: 1.4rem;
     letter-spacing: 5px;
     font-weight: 900;
 }
 
 .input-container{
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .new-type{
-    border-radius: 10%;
     padding: 4%;
     width: fit-content;
     margin: 0px 10px 10px 0;
@@ -37,15 +36,14 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 10px 0 5px 0;
+    margin: 0px 0 5px 0;
 }
 
 
 .ability-container{
     margin: 2% 0 2% 0;
-    border-radius: 5%;
-    font-size: 1.4rem;
-    padding: 2%;
+    font-size: 1.1rem;
+    padding: 4%;
     background-color: var(--app-light-blue);
     color: var(--app-white);
 }
@@ -55,7 +53,8 @@
 }
 
 .ability-name{
-    font-size: 2rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--app-white);
 }
 
 .no-entities{
@@ -75,6 +74,45 @@
     margin: 5% auto;
 }
 
+dialog{
+    position: inherit;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 5% auto;
+    width: 80%;
+    z-index: 1;
+}
+
+.dialog-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.dialog-actions > button{
+    width: 40%;
+}
+
+#pokemon-select
+{
+    width: 100%;
+}
+
+.remove-type-btn{
+    width: fit-content;
+    color: crimson;
+    font-size: 1.5rem;
+}
+
+.evolution-snapshot > .remove-type-btn
+{
+    margin-left: 90%;
+}
+
+.remove-type-btn:hover{
+    cursor: pointer;
+}
+
 @media (min-width: 320px)
 {
 
@@ -90,6 +128,26 @@
     .no-entities{
         font-size: 1.5rem;
     }
+
+    .new-type{
+        padding: 2%;
+        font-size: 1.8rem;
+    }
+
+    .evolution-snapshot > .remove-type-btn
+    {
+        margin-left: 92%;
+        font-size: 1.8rem;
+    }
+
+    .ability-container{
+        padding: 3%;
+        font-size: 1.3rem;
+    }
+
+    .ability-name{
+        font-size: 1.6rem;
+    }
 }
 
 @media (min-width: 576px) 
@@ -102,23 +160,57 @@
     .no-entities{
         font-size: 1.7rem;
     }
+
+    .evolution-snapshot > .remove-type-btn
+    {
+        margin-left: 94%;
+        font-size: 1.9rem;
+    }
+
+    .ability-container{
+        padding: 2%;
+        font-size: 1.4rem;
+    }
+
+    .ability-name{
+        font-size: 1.7rem;
+    }
 }
 
 @media (min-width: 768px) { 
     .form-label{
-        
         font-size: 1.9rem;
     }
 
     .no-entities{
         font-size: 1.9rem;
     }
+
+    .new-type{
+        padding: 1%;
+        font-size: 2rem;
+    }
+
+    .evolution-snapshot > .remove-type-btn
+    {
+        margin-left: 95%;
+        font-size: 2rem;
+    }
+
+
  }
 
 
 @media (min-width: 992px) 
 { 
+    .ability-container{
+        padding: 1%;
+        font-size: 1.9rem;
+    }
 
+    .ability-name{
+        font-size: 2.2rem;
+    }
 
 }
 

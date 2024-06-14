@@ -13,9 +13,11 @@ export class NavbarComponent {
 
   userIsLoggedIn(): boolean
   {
+  
     this.userService.userIsLoggedIn().subscribe({
       next: (isLoggedIn) => {
         this.loggedIn = isLoggedIn
+        console.log(this.loggedIn);
         
       },
       error: (err) => {
@@ -26,9 +28,11 @@ export class NavbarComponent {
     return this.loggedIn
   }
 
-  getUsername(): string
+  getUsername(): string | undefined
   {
-    return 'User'
+    const user = this.userService.currentUser
+
+    return user?.username
   }
 
   logout()

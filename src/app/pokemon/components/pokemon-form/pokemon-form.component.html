@@ -1,71 +1,71 @@
 <div class="form-container">
-<h2 *ngIf="! this.formIsOnEditMode; else editTitle">Create Pokemon</h2>
+    <h2 *ngIf="! this.formIsOnEditMode; else editTitle">Create Pokemon</h2>
 
-<ng-template #editTitle>
-    <h2>Edit Pokemon</h2>
-</ng-template>
+    <ng-template #editTitle>
+        <h2>Edit Pokemon</h2>
+    </ng-template>
 
-<form  [formGroup]="pokemonForm">
-    <!-- name -->
-    <div class="input-container">
-        <label for="name" class="form-label">Name:</label><br>
-        <input type="text" name="name" id="name" formControlName="name">
+    <form [formGroup]="pokemonForm">
+        <!-- name -->
+        <div class="input-container">
+            <label for="name" class="form-label">Name:</label><br>
+            <input type="text" name="name" id="name" formControlName="name">
 
-        <span *ngIf="validateField('name', 'required')">
-            This field is required.
-        </span>
-    </div>
-
-    <!-- types -->
-
-    <div class="input-container">
-        <p class="form-label">Types: </p>
-        <div *ngIf="this.types.length > 0;else noTypes">
-            <div class="types-container">
-                <span *ngFor="let type of this.types" class="new-type">
-                    {{ type }}
-                </span>
-            </div>
+            <span *ngIf="validateField('name', 'required')" class="error">
+                This field is required.
+            </span>
         </div>
 
-        <ng-template #noTypes>
-            <p class="no-entities">No types registered yet.</p>
-        </ng-template>
-    
-        <dialog #typesDialog>
-            <div>
-                <div>
-                    <label for="type">Type:</label>
-                    <input type="text" name="type" id="type" formControlName="type">
+        <!-- types -->
+
+        <div class="input-container">
+            <p class="form-label">Types: </p>
+            <div *ngIf="this.types.length > 0;else noTypes">
+                <div class="types-container">
+                    <span *ngFor="let type of this.types" class="new-type">
+                        {{ type }}
+                        <span><i class="bi bi-x-circle-fill remove-type-btn" (click)="removeType(type)"></i></span>
+                    </span>
+                    
                 </div>
-
-                <button (click)="addType(typesDialog)">Finish</button>
             </div>
-        </dialog>
 
-        <button (click)="typesDialog.show()">Add type</button>
-    </div>
-
-    <!-- lvl found -->
-    <div class="input-container">
-        <label for="lvl" class="form-label">Lvl found:</label><br>
-        <input type="number" name="lvl" id="lvl" formControlName="lvl" min="1">
-
-        <span *ngIf="validateField('lvl', 'required')">
-            This field is required.
-        </span>
-
-        <span *ngIf="validateField('lvl', 'min')">
-            Lvl cannot be above 1.
-        </span>
-    </div>
-
-    <!-- abilities -->
-    <div class="input-container">
-        <p class="form-label">Abilities: {{ this.abilities.length}}</p>
+            <ng-template #noTypes>
+                <p class="no-entities">No types registered yet.</p>
+            </ng-template>
         
-        <dialog #abilityDialog>
-            <div>
+            <dialog #typesDialog>
+                <label for="type">Type:</label>
+                <input type="text" name="type" id="type" formControlName="type">
+                
+                <div class="dialog-actions">
+                    <button (click)="dialogSaveType(typesDialog)">Save</button>
+                    <button (click)="dialogCancelType(typesDialog)">Cancel</button>
+                </div>
+            </dialog>
+
+            <button (click)="typesDialog.show()">Add type</button>
+        </div>
+
+        <!-- lvl found -->
+        <div class="input-container">
+            <label for="lvl" class="form-label">Lvl found:</label><br>
+            <input type="number" name="lvl" id="lvl" formControlName="lvl" min="1">
+
+            <span *ngIf="validateField('lvl', 'required')" class="error">
+                This field is required.
+            </span>
+
+            <span *ngIf="validateField('lvl', 'min')" class="error">
+                Lvl cannot be above 1.
+            </span>
+        </div>
+
+        <!-- abilities -->
+        <div class="input-container">
+            <p class="form-label">Abilities: {{ this.abilities.length}}</p>
+            
+            <dialog #abilityDialog>
                 <p>New Ability</p>
 
                 <div>
@@ -74,62 +74,69 @@
                 </div>
                 
                 <label for="abilityDesc">Description:</label>
-                <input type="text" name="abilityDesc" id="abilityDesc"formControlName="abilityDesc"><br>
+                <input type="text" name="abilityDesc" id="abilityDesc" formControlName="abilityDesc"><br>
 
-                <button (click)="addAbility(abilityDialog)">Finish</button>
-            </div>
-        </dialog>
-
-    
-        <div *ngIf="this.pokemon?.abilities?.length; else noAbilities" >
-            <div *ngFor="let ability of pokemon?.abilities" class="ability-container">
-                <p class="ability-name">{{ ability.name}} </p>
-                <p class="ability-description">{{ ability.description}}</p>
-            </div>
-        </div>
-
-        <ng-template #noAbilities>
-            <p class="no-entities">No abilities registered yet.</p>
-        </ng-template>
-        
-        <button (click)="abilityDialog.show()">Add ability</button>
-    </div>
-
-    <!-- evolutions -->
-    <div class="input-container">
-        <p class="form-label">Evolutions: {{ this.evolutions.length }}</p>
-
-        <div *ngIf="this.pokemon?.evolutionIds?.length; else noEvolutions">
-            <div *ngFor="let evolution of this.evolutionsSnapshots" class="evolution-snapshot">
-                <app-one-pokemon [pokemon]="evolution"/>
-            </div>
-        </div>
-
-        <ng-template #noEvolutions>
-            <p class="no-entities">No evolutions registered yet.</p>
-        </ng-template>
+                <div class="dialog-actions">
+                    <button (click)="dialogSaveAbility(abilityDialog)">Save</button>
+                    <button (click)="dialogCancelAbility(abilityDialog)">Cancel</button>
+                </div>
+            </dialog>
 
         
-        <dialog #evolutionDialog>
-            <div>
-                <p>Evolutions</p>
-                
-                <input type="radio" id="evolutionChoice2" name="choice" value="email" />
-                <label for="evolutionChoice2">Add from existing pokemon:</label><br>
+            <div *ngIf="this.abilities.length > 0; else noAbilities" >
+                <div *ngFor="let ability of this.abilities" class="ability-container">
+                    
+                    <p class="ability-name">{{ ability.name}} 
+                        <span class="remove-type-btn"><i class="bi bi-x-circle-fill" (click)="removeAbility(ability.name)"></i></span>
+                    </p>
+                    <p class="ability-description">{{ ability.description}}</p>
+                    
+                </div>
+            </div>
+
+            <ng-template #noAbilities>
+                <p class="no-entities">No abilities registered yet.</p>
+            </ng-template>
+            
+            <button (click)="abilityDialog.show()">Add ability</button>
+        </div>
+
+        <!-- evolutions -->
+        <div class="input-container">
+            <p class="form-label">Evolutions: {{ this.evolutions.length }}</p>
+
+            <div *ngIf="this.evolutions.length > 0; else noEvolutions">
+                <div *ngFor="let evolutionSnapshot of this.evolutionsSnapshots" class="evolution-snapshot">
+                    <p class=" remove-type-btn"><i class="bi bi-x-circle-fill" (click)="removeEvolution(evolutionSnapshot.id!)"></i></p>
+                    <app-one-pokemon [pokemon]="evolutionSnapshot"/>
+                    
+                </div>
+            </div>
+
+            <ng-template #noEvolutions>
+                <p class="no-entities">No evolutions registered yet.</p>
+            </ng-template>
+
+            
+            <dialog #evolutionDialog>
+                <p>Add from existing pokemon:</p>
                 
                 <select name="pokemon-select" id="pokemon-select" formControlName="evolutionId">
-                    <option *ngFor="let pokemonSnapshot of this.pokemonsSnapshots" 
-                        [ngValue]="pokemonSnapshot.id">{{ pokemonSnapshot.name }} - {{ pokemonSnapshot.types }}</option>
-                </select> <br>
+                    <option *ngFor="let pokemonSnapshot of this.pokemonsSnapshots" [ngValue]="pokemonSnapshot.id">
+                        {{ pokemonSnapshot.name }} - {{ pokemonSnapshot.types }}
+                    </option>
+                    
+                </select>
 
-                <button (click)="addEvolution(evolutionDialog)">Save</button>
-                <button (click)="evolutionDialog.close()">Cancel</button>
-            </div>
-        </dialog>
+                <div class="dialog-actions">
+                    <button (click)="dialogSaveEvolution(evolutionDialog)">Save</button>
+                    <button (click)="dialogCancelEvolution(evolutionDialog)">Cancel</button>
+                </div>
+            </dialog>
 
-        <button (click)="showEvolutionMenu(evolutionDialog)">Add Evolution</button>
-    </div>
+            <button (click)="showEvolutionMenu(evolutionDialog)">Add Evolution</button>
+        </div>
 
-    <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid" (click)="submitPokemon()">Save</button>
-</form>
+        <button type="submit" class="form-btn" [disabled]="pokemonForm.invalid" (click)="submitPokemon()">Save</button>
+    </form>
 </div>

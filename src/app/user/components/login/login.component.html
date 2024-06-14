@@ -5,7 +5,7 @@
             <label for="username" class="form-label">Username:</label><br>
             <input type="text" name="username" id="username" formControlName="username">
 
-            <span *ngIf="validateField('username', 'required')">
+            <span *ngIf="validateField('username', 'required')" class="error">
                 This field is required.
             </span>
         </div>
@@ -15,7 +15,7 @@
 
             <input type="password" name="password" id="password" formControlName="password">
 
-            <span *ngIf="validateField('password', 'required')">
+            <span *ngIf="validateField('password', 'required')" class="error">
                 This field is required.
             </span>
         </div>

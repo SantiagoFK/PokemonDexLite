@@ -1,14 +1,17 @@
 
-<div class="pokemon-list-container">
-    <div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy" class="pokemon-container">
-    
+<div class="pokemon-list-container" *ngIf="this.pokemons.length > 0; else noPokemons">
+    <div *ngFor="let pokemon of pokemons; index as i; trackBy: itemTrackBy" class="pokemon-container">    
         <app-one-pokemon [pokemon]="pokemon" />
 
         <div class="pokemon-actions">
             <button (click)="onDetails(pokemon)" class="action-btn">Details</button>
             <button (click)="onEdit(pokemon)" class="action-btn">Edit</button>
             <button (click)="onDelete(pokemon.id!)" class="action-btn">Delete</button>
-        </div> 
-
+        </div>
     </div>
 </div>
+
+
+<ng-template #noPokemons>
+    <p class="no-entities">No pokemons registered yet.</p>
+</ng-template>

@@ -29,6 +29,13 @@
     width: 30%;
 }
 
+.no-entities{
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 5%;
+    text-align: center;
+}
+
 @media (min-width: 320px)
 {
     

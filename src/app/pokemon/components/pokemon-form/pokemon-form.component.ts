@@ -51,7 +51,7 @@ export class PokemonFormComponent implements OnInit
         this.pokemon.evolutionIds?.forEach((id) => this.pokemonService.getPokemonById(id).subscribe((pokemon) => {
           this.evolutionsSnapshots.push(pokemon)
         }))
-        this.updateForm(pokemon)
+        this.setForm(pokemon)
       })
     }
   }
@@ -75,21 +75,21 @@ export class PokemonFormComponent implements OnInit
         .subscribe(() => this.router.navigate(['home']))
     } else { 
       //create new
-      console.log("to submit", pokemon)
       this.pokemonService.postPokemon(pokemon)
         .subscribe(() => this.router.navigate(['home']))
     }
-
-    console.log("new pokemon: ", pokemon)
   }
 
-  updateForm(pokemon: Pokemon)
+  setForm(pokemon: Pokemon)
   {
 
     this.pokemonForm = this.fb.nonNullable.group({
       name: [pokemon.name, [Validators.required]],
       type: ['', Validators.required],
-      lvl: [pokemon.lvl, [Validators.required, Validators.min(1)]]
+      lvl: [pokemon.lvl, [Validators.required, Validators.min(1)]],
+      evolutionId: [''],
+      abilityName: [''],
+      abilityDesc: ['']
     })
 
     this.types = pokemon.types
@@ -103,45 +103,76 @@ export class PokemonFormComponent implements OnInit
       && this.pokemonForm.controls[field].touched
   }
 
-  addType(typesDialog: HTMLDialogElement)
+  dialogSaveType(typesDialog: HTMLDialogElement)
   {
     const type = this.pokemonForm.controls['type'].value
-
-    this.types.push(type)
+    
+    if(type !== '')
+      this.types.push(type)
+    
+    this.pokemonForm.controls['type'].reset()
   
     typesDialog.close()
   }
 
-  addAbility(abilityDialog: HTMLDialogElement)
+  dialogCancelType(typesDialog: HTMLDialogElement)
+  {
+    this.pokemonForm.controls['type'].reset()
+  
+    typesDialog.close()
+  }
+
+  dialogSaveAbility(abilityDialog: HTMLDialogElement)
   {
     const abilityName = this.pokemonForm.controls['abilityName'].value
     const abilityDesc = this.pokemonForm.controls['abilityDesc'].value
 
-    const ability: PokemonAbility = {
-      name: abilityName,
-      description: abilityDesc
+    if(abilityName !== '' && abilityDesc !== '')
+    {
+      const ability: PokemonAbility = {
+        name: abilityName,
+        description: abilityDesc
+      }  
+      
+      this.abilities.push(ability)
     }
-
-    this.abilities.push(ability)
+    
+    this.pokemonForm.controls['abilityName'].reset()
+    this.pokemonForm.controls['abilityDesc'].reset()
 
     abilityDialog.close()
   }
 
-  addEvolution(evolutionDialog: HTMLDialogElement)
+  dialogCancelAbility(abilityDialog: HTMLDialogElement)
+  {
+    this.pokemonForm.controls['abilityName'].reset()
+    this.pokemonForm.controls['abilityDesc'].reset()
+  
+    abilityDialog.close()
+  }
+
+  dialogSaveEvolution(evolutionDialog: HTMLDialogElement)
   {
     const pokemonEvolutionId = this.pokemonForm.controls['evolutionId'].value
-    this.evolutions.push(pokemonEvolutionId)
+
+    if( pokemonEvolutionId !== '' && pokemonEvolutionId !== this.pokemon?.id)
+      this.evolutions.push(pokemonEvolutionId)
+    
+    this.pokemonService.getPokemonById(pokemonEvolutionId).subscribe((pokemon) => {this.evolutionsSnapshots.push(pokemon)})
+
+    evolutionDialog.close()
+  }
+
+  dialogCancelEvolution(evolutionDialog: HTMLDialogElement)
+  { 
     evolutionDialog.close()
   }
 
   showEvolutionMenu(evolutionDialog: HTMLDialogElement)
   {
-    console.log(this.pokemonsSnapshots)
-
     this.pokemonService.getPokemonsSnapshots().subscribe({
       next: (pokemons) => {
         this.pokemonsSnapshots = pokemons
-        console.log(this.pokemonsSnapshots)
       },
       error: (error) =>{
         alert(error)
@@ -149,6 +180,21 @@ export class PokemonFormComponent implements OnInit
     })
 
     evolutionDialog.show()
+  }
+
+  removeType(typeName: string)
+  { 
+    this.types = this.types.filter((type) => type !== typeName)
+  }
+
+  removeAbility(abilityName: string)
+  { 
+    this.abilities = this.abilities.filter((ability) => ability.name !== abilityName) 
+  }
+
+  removeEvolution(evolutionId: string)
+  { 
+    this.evolutions = this.evolutions.filter((id) => id !== evolutionId)
   }
 
 }

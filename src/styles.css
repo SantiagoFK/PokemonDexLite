@@ -85,6 +85,10 @@ input:focus{
     outline: none;
 }
 
+.error{
+    color: red;
+}
+
 
 /************************************** scroll bar ***************************/
 ::-webkit-scrollbar {
