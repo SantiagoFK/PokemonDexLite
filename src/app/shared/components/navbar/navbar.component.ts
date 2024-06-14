@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../user/services/user.service';
 
 @Component({
@@ -6,26 +6,23 @@ import { UserService } from '../../../user/services/user.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   mobileMode: boolean = false
   loggedIn: boolean = false
   constructor(private userService: UserService){}
 
+  ngOnInit(): void {
+    this.loggedIn = this.userIsLoggedIn()
+  }
+
   userIsLoggedIn(): boolean
   {
-  
-    this.userService.userIsLoggedIn().subscribe({
-      next: (isLoggedIn) => {
-        this.loggedIn = isLoggedIn
-        console.log(this.loggedIn);
-        
-      },
-      error: (err) => {
-        alert(err)
-      }
-    })
+    const userId = localStorage.getItem('userId')
 
-    return this.loggedIn
+    if( !userId )
+      return false
+    
+    return true
   }
 
   getUsername(): string | undefined

@@ -27,7 +27,7 @@ export class LoginComponent
       const password = this.userForm.controls['password'].value
 
       const user = this.userService.login(username, password)
-      this.router.navigate([''])
+      this.router.navigate(['home'])
     }
   }
 

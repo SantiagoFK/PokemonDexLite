@@ -3,23 +3,23 @@
         <p> Pokedex </p>
     </div>
 
-    <div class="desktop-nav">
+    <div class="desktop-nav" *ngIf="this.userIsLoggedIn()">
         <a href="" routerLink="" class="nav-page">Home</a>
 
         <div id="dropdown">
-            <a href="" id="dropdown-btn">Pokemon</a>
+            <a href="" id="dropdown-btn" >Pokemon</a>
             <div id="dropdown-content">
                 <a href="">List</a>
                 <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
             </div>
         </div>
         
-        <a href="" class="nav-page" *ngIf="this.userIsLoggedIn"> {{ getUsername( )}} </a>
+        <a href="" class="nav-page"> {{ getUsername( )}} </a>
 
-        <a href="" class="nav-page" *ngIf="this.userIsLoggedIn" (click)="logout()">Logout</a>
+        <a href="" class="nav-page" (click)="logout()">Logout</a>
     </div>
 
-    <div class="mobile-nav">
+    <div class="mobile-nav" *ngIf="this.userIsLoggedIn()">
         <p class="sidebar-open-btn" (click)="openSideBar()"><i class="bi bi-list"></i></p>
 
         <div class="mobile-side-navbar" [ngClass]="mobileMode ? 'expanded' : ''">
@@ -29,7 +29,7 @@
 
             <a href="" routerLink="pokemon" *ngIf="this.loggedIn">Create</a>
     
-            <a href="" *ngIf="this.userIsLoggedIn">  {{ getUsername( )}} </a>
+            <a href="">  {{ getUsername( )}} </a>
     
             <a href="" (click)="logout()">Logout</a>
         </div>

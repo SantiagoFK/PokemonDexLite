@@ -1,0 +1,26 @@
+h1{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.error-container{
+    padding: 7%;
+    gap: 30px;
+}
+
+.error-container > button{
+    margin: 10% auto;
+    width: 80%;
+}
+
+@media (min-width: 576px) {  
+    h1{
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 768px) { 
+    h1{
+        font-size: 2.5rem;
+    }
+}
